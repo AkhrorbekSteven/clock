@@ -1,0 +1,182 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+%default-flex-style {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+%default-arrow-styles {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+@mixin stepArrowAnimation ($name, $duration, $count, $function) {
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-iteration-count: $count;
+    animation-timing-function: $function;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: #2c2f38;
+    @extend %default-flex-style;
+
+    .clock-wrapper {
+        width: 400px;
+        height: 500px;
+        background-color: #22272D;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
+        @extend %default-flex-style;
+
+        .clock {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background-color: #434A53;
+            position: relative;
+            @extend %default-flex-style;
+
+            &--number {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                @extend %default-flex-style;
+
+                &__num {
+                    color: #ffffff;
+                    font-size: 28px;
+                    font-family: 'Russo One', sans-serif;
+                    position: absolute;
+                    z-index: 0;
+
+                    &_12 {
+                        top: 15px;
+                    }
+                    &_3 {
+                        right: 15px;
+                    }
+                    &_6 {
+                        bottom: 10px;
+                    }
+                    &_9 {
+                        left: 15px;
+                    }
+                }
+                &__arr {
+                    position: absolute;
+                    width: 5px;
+                    height: 100%;
+                    z-index: 0;
+
+                    &::before {
+                        content: "";
+                        width: 100%;
+                        height: 25px;
+                        display: block;
+                        background-color: #fff;
+                        border-top-left-radius: 3px;
+                        border-top-right-radius: 3px;
+                        margin-top: 15px;
+                    }
+                    &_1 {
+                        transform: rotate(30deg);
+                    }
+                    &_2 {
+                        transform: rotate(60deg);
+                    }
+                    &_4 {
+                        transform: rotate(120deg);
+                    }
+                    &_5 {
+                        transform: rotate(150deg);
+                    }
+                    &_7 {
+                        transform: rotate(210deg);
+                    }
+                    &_8 {
+                        transform: rotate(240deg);
+                    }
+                    &_10 {
+                        transform: rotate(300deg);
+                    }
+                    &_11 {
+                        transform: rotate(330deg);
+                    }
+                }
+            }
+            &--arrow__hour {
+                @include stepArrowAnimation(rotate, 43200s, infinite, linear); 
+                @extend %default-arrow-styles;
+
+                .hour {
+                    background: white;
+                    height: 20%;
+                    width: 5px;
+                    position: absolute;
+                    left: 50%;
+                    transform-origin: 50% 100%;
+                    transform: translateX(-50%);
+                    top: 30%;  
+                }
+            }
+            &--arrow__min {
+                @extend %default-arrow-styles;
+                @include stepArrowAnimation(rotate, 3600s, infinite, steps(60));
+
+                .min {
+                    background: red;
+                    height: 42%;
+                    width: 4px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 15%;  
+                }
+            }
+            &--arrow__sec {
+                @extend %default-arrow-styles;
+                @include stepArrowAnimation(rotate, 60s, infinite, steps(60)); 
+
+                .sec {
+                    background: #0b0c0e;
+                    height: 55%;
+                    width: 2px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 5%;  
+                    z-index: 10;
+                }
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 12px;
+                height: 12px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotateZ(360deg);
+    }
+}

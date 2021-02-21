@@ -1,0 +1,174 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+.container .clock-wrapper .clock--number, .container .clock-wrapper .clock, .container .clock-wrapper, .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .clock-wrapper .clock--arrow__sec, .container .clock-wrapper .clock--arrow__min, .container .clock-wrapper .clock--arrow__hour {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: #2c2f38;
+}
+.container .clock-wrapper {
+  width: 400px;
+  height: 500px;
+  background-color: #22272D;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
+}
+.container .clock-wrapper .clock {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background-color: #434A53;
+  position: relative;
+}
+.container .clock-wrapper .clock--number {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.container .clock-wrapper .clock--number__num {
+  color: #ffffff;
+  font-size: 28px;
+  font-family: "Russo One", sans-serif;
+  position: absolute;
+  z-index: 0;
+}
+.container .clock-wrapper .clock--number__num_12 {
+  top: 15px;
+}
+.container .clock-wrapper .clock--number__num_3 {
+  right: 15px;
+}
+.container .clock-wrapper .clock--number__num_6 {
+  bottom: 10px;
+}
+.container .clock-wrapper .clock--number__num_9 {
+  left: 15px;
+}
+.container .clock-wrapper .clock--number__arr {
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  z-index: 0;
+}
+.container .clock-wrapper .clock--number__arr::before {
+  content: "";
+  width: 100%;
+  height: 25px;
+  display: block;
+  background-color: #fff;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  margin-top: 15px;
+}
+.container .clock-wrapper .clock--number__arr_1 {
+  transform: rotate(30deg);
+}
+.container .clock-wrapper .clock--number__arr_2 {
+  transform: rotate(60deg);
+}
+.container .clock-wrapper .clock--number__arr_4 {
+  transform: rotate(120deg);
+}
+.container .clock-wrapper .clock--number__arr_5 {
+  transform: rotate(150deg);
+}
+.container .clock-wrapper .clock--number__arr_7 {
+  transform: rotate(210deg);
+}
+.container .clock-wrapper .clock--number__arr_8 {
+  transform: rotate(240deg);
+}
+.container .clock-wrapper .clock--number__arr_10 {
+  transform: rotate(300deg);
+}
+.container .clock-wrapper .clock--number__arr_11 {
+  transform: rotate(330deg);
+}
+.container .clock-wrapper .clock--arrow__hour {
+  animation-name: rotate;
+  animation-duration: 43200s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.container .clock-wrapper .clock--arrow__hour .hour {
+  background: white;
+  height: 20%;
+  width: 5px;
+  position: absolute;
+  left: 50%;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%);
+  top: 30%;
+}
+.container .clock-wrapper .clock--arrow__min {
+  animation-name: rotate;
+  animation-duration: 3600s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(60);
+}
+.container .clock-wrapper .clock--arrow__min .min {
+  background: red;
+  height: 42%;
+  width: 4px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15%;
+}
+.container .clock-wrapper .clock--arrow__sec {
+  animation-name: rotate;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(60);
+}
+.container .clock-wrapper .clock--arrow__sec .sec {
+  background: #0b0c0e;
+  height: 55%;
+  width: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 5%;
+  z-index: 10;
+}
+.container .clock-wrapper .clock::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
